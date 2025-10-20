@@ -78,6 +78,34 @@ Notes
   - src/state/: rng, gameConfig (tuning + upgrades), useLocalStorage
   - src/data/: items (catalog), tips (educational snippets)
 
+```cmd
+game_submission/
+├── README.md    # Overview, instructions to run the game, and project summary  
+│  
+├── project_report.pdf   # Full report with introduction of the game, game theme topic justification, potential impact, technology stack (including AI tools and web libraries), overview of game mechanics, and reflection  
+│  
+├── youtube_link.txt  # Include only the YouTube URL for SaigonSort’s demo video with voice-over (maximum 7 minutes)  
+│  
+├── prompts/  
+│   ├── concept_prompts.txt                  # Prompts used for brainstorming ideas  
+│   ├── asset_generation_prompts.txt        # Prompts used for generating visuals or assets  
+│   ├── code_generation_prompts.txt          # Prompts used for game logic or UI  
+│   ├── refinement_prompts.txt              # Prompts used for debugging, polishing, etc.  
+│   └── ...                                                            
+│  
+├── game_app/                        # A playable, working web game app  
+│   ├── index.html                   # Main entry point (Welcome/Menu/Play)  
+│   └── ...                          # Other relevant game files and folders (game assets, css, javascript, etc.)  
+│  
+└── screenshots/                     # Maximum 6 screenshots only  
+    ├── guide_screen.png  
+    ├── home_screen1.png  
+    ├── playCustomLevek_screen.png  
+    ├── scoreBoard_screen.png  
+    └── results_screen.png  
+    ├── resultWin_screen.png  
+    └── resultFalse_screen.png  
+
 Key files
 - game_app/src/state/gameConfig.js: tuning, bin labels, upgrade effects, day scaling
 - game_app/src/state/rng.js: daily/custom seeds and deterministic RNG
