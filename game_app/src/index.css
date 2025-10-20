@@ -6,3 +6,17 @@ html, body, #root {
 body {
   @apply bg-white text-slate-900 antialiased;
 }
+
+/* lightweight animations */
+@keyframes pop {
+  0% { transform: scale(0.95); opacity: 0; }
+  60% { transform: scale(1.03); opacity: 1; }
+  100% { transform: scale(1); }
+}
+.animate-pop { animation: pop 180ms ease-out; }
+
+@keyframes slideDownFade {
+  0% { transform: translateY(-8px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+.animate-slide-down { animation: slideDownFade 220ms ease-out; }

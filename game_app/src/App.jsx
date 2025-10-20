@@ -7,11 +7,12 @@ import WhySort from './screens/WhySort.jsx'
 import Guide from './screens/Guide.jsx'
 import Game from './screens/Game.jsx'
 import EndOfDay from './screens/EndOfDay.jsx'
+import HighScores from './screens/HighScores.jsx'
 import { createRNG, dailySeed } from './state/rng.js'
 import useLocalStorage from './state/useLocalStorage.js'
 
 function App() {
-  const [screen, setScreen] = useState('menu') // menu | how | guide | why | game | end
+  const [screen, setScreen] = useState('menu') // menu | how | guide | why | scores | game | end
   const [seedMode, setSeedMode] = useState('daily') // daily | random | custom
   const [customSeed, setCustomSeed] = useState('')
   const resolvedSeed = useMemo(() => {
@@ -26,6 +27,7 @@ function App() {
   const [upgrades, setUpgrades] = useState({})
   const [totals, setTotals] = useState({ score: 0, trust: 0 })
   const [bestScore, setBestScore] = useLocalStorage('saigonsort_best', 0)
+  const [highscores, setHighscores] = useLocalStorage('saigonsort_highscores', [])
   const [lastSummary, setLastSummary] = useState(null)
 
   const startGame = () => {
@@ -44,6 +46,14 @@ function App() {
     setTotals(nextTotals)
     if (nextTotals.score > bestScore) setBestScore(nextTotals.score)
     setLastSummary({ ...summary, totals: nextTotals, day })
+    if (summary?.gameOver) {
+      const entry = { score: nextTotals.score, trust: nextTotals.trust, day, when: Date.now() }
+      setHighscores((arr) => {
+        const next = [...(arr || []), entry]
+        next.sort((a, b) => b.score - a.score || (b.when || 0) - (a.when || 0))
+        return next.slice(0, 20)
+      })
+    }
     setScreen('end')
   }
 
@@ -69,6 +79,7 @@ function App() {
             onPlay={startGame}
             onHow={() => setScreen('how')}
             onGuide={() => setScreen('guide')}
+            onScores={() => setScreen('scores')}
             onWhy={() => setScreen('why')}
           />
         </div>
@@ -87,6 +98,7 @@ function App() {
             rng={rng}
             upgrades={upgrades}
             onEndOfDay={handleEndOfDay}
+            onExitToMenu={() => setScreen('menu')}
           />
         </div>
       )}
@@ -108,3 +120,4 @@ function App() {
 }
 
 export default App
+      {screen === 'scores' && <HighScores scores={highscores} onBack={() => setScreen('menu')} />}

@@ -1,8 +1,8 @@
 export const BIN_TYPES = [
-  { id: 'recycle', label: 'Recycle' },
-  { id: 'compost', label: 'Compost' },
-  { id: 'landfill', label: 'Landfill' },
-  { id: 'ewaste', label: 'E-waste' },
+  { id: 'recycle', label: 'Recycle', examples: 'Bottles, cans, paper, cardboard' },
+  { id: 'compost', label: 'Compost', examples: 'Food scraps, peels, coffee grounds' },
+  { id: 'landfill', label: 'Landfill', examples: 'Dirty tissue, chip packets, styrofoam' },
+  { id: 'ewaste', label: 'E-waste', examples: 'Batteries, chargers, small electronics' },
 ]
 
 export const BASE_CONFIG = {
@@ -19,7 +19,7 @@ export const BASE_CONFIG = {
 }
 
 // upgrades is a map { upgradeId: level }
-export function applyUpgradesToConfig(upgrades) {
+export function applyUpgradesToConfig(upgrades, day = 1) {
   const u = upgrades || {}
   const cfg = { ...BASE_CONFIG }
 
@@ -39,6 +39,13 @@ export function applyUpgradesToConfig(upgrades) {
   if (u.neighborhoodPride) {
     cfg.trustPerCorrect += 1 * u.neighborhoodPride
   }
+  // Day-based difficulty scaling applied AFTER upgrades so it always speeds up
+  const d = Math.max(1, day)
+  const speedFactor = Math.max(0.6, 1 - 0.08 * (d - 1)) // up to 40% faster
+  const lifetimeFactor = Math.max(0.75, 1 - 0.05 * (d - 1)) // up to 25% shorter lifetime
+  cfg.spawnIntervalMinSec *= speedFactor
+  cfg.spawnIntervalMaxSec *= speedFactor
+  cfg.itemLifetimeSec *= lifetimeFactor
   return cfg
 }
 

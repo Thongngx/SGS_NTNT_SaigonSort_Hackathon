@@ -1,4 +1,4 @@
-export default function Menu({ seedMode, setSeedMode, customSeed, setCustomSeed, seedPreview, bestScore, onPlay, onHow, onGuide, onWhy }) {
+export default function Menu({ seedMode, setSeedMode, customSeed, setCustomSeed, seedPreview, bestScore, onPlay, onHow, onGuide, onScores, onWhy }) {
   const segBtn = (active) => `px-3 py-1.5 rounded-md border text-sm ${active ? 'bg-slate-100 border-slate-300' : 'bg-white border-slate-300 hover:bg-slate-50'}`
   const btn = 'inline-flex items-center justify-center px-4 py-2 rounded-md border border-slate-300 bg-white text-slate-900 shadow-sm hover:bg-slate-50'
   const btnPrimary = 'inline-flex items-center justify-center px-4 py-2 rounded-md border border-blue-600 bg-blue-600 text-white shadow-sm hover:bg-blue-700'
@@ -29,10 +29,12 @@ export default function Menu({ seedMode, setSeedMode, customSeed, setCustomSeed,
         <div className="text-xs text-slate-500 mt-2">Seed preview: <code>{seedPreview}</code></div>
       </div>
 
-      <div className="mt-4 flex gap-2 justify-center">
+      <div className="mt-4 flex gap-2 justify-center flex-wrap">
         <button className={btnPrimary} onClick={onPlay}>▶ Play</button>
         <button className={btn} onClick={onGuide}>📘 Guide</button>
+        <button className={btn} onClick={onHow}>ℹ How to Play</button>
         <button className={btn} onClick={onWhy}>💧 Why Sort?</button>
+        <button className={btn} onClick={onScores}>🏆 High Scores</button>
       </div>
 
       <div className="mt-3 text-slate-600">Best Score: <strong className="text-slate-900">{bestScore}</strong></div>

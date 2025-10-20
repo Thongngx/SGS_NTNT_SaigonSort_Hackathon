@@ -1,6 +1,6 @@
 import PollutionBar from './PollutionBar.jsx'
 
-export default function TopBar({ day, score, trust, pollution, drainAt, timeLeft }) {
+export default function TopBar({ day, score, trust, pollution, drainAt, timeLeft, paused, onTogglePause }) {
   const stat = (label, value) => (
     <div className="px-3 py-1.5 rounded-md border border-slate-200 bg-white shadow-sm text-sm">
       <span className="text-slate-500 mr-1">{label}</span>
@@ -13,7 +13,13 @@ export default function TopBar({ day, score, trust, pollution, drainAt, timeLeft
       <div>
         <PollutionBar value={pollution} drainAt={drainAt} />
       </div>
-      <div className="flex justify-end">
+      <div className="flex justify-end items-center gap-2">
+        <button
+          className="px-3 py-1.5 rounded-md border border-slate-200 bg-white shadow-sm text-sm hover:bg-slate-50"
+          onClick={onTogglePause}
+        >
+          {paused ? 'Resume' : 'Pause'}
+        </button>
         <div className="px-3 py-1.5 rounded-md border border-slate-200 bg-white shadow-sm text-sm">⏱ {Math.max(0, Math.ceil(timeLeft))}s</div>
       </div>
     </div>

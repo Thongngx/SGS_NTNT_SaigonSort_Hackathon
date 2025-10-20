@@ -1,4 +1,4 @@
-export default function Bin({ type, label, onDrop }) {
+export default function Bin({ type, label, examples, onDrop }) {
   const handleDragOver = (e) => {
     e.preventDefault()
   }
@@ -22,11 +22,12 @@ export default function Bin({ type, label, onDrop }) {
     'border-rose-300'
   return (
     <div
-      className={`rounded-xl border-2 ${color} bg-white text-center min-h-24 p-4 flex items-center justify-center shadow-sm`}
+      className={`rounded-xl border-2 ${color} bg-white text-center min-h-16 p-2 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-transform hover:-translate-y-0.5`}
       onDragOver={handleDragOver}
       onDrop={handleDrop}
     >
-      <div className="font-semibold text-slate-800">{label}</div>
+      <div className="font-semibold text-slate-800 leading-tight text-sm">{label}</div>
+      {examples && <div className="text-[10px] text-slate-500 leading-snug">{examples}</div>}
     </div>
   )
 }

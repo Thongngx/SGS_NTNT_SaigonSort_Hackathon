@@ -9,7 +9,7 @@ export default function TrashItem({ item, expiresAt }) {
 
   return (
     <div
-      className="cursor-grab select-none rounded-xl border border-slate-200 bg-white px-4 py-3 w-40 shadow-sm hover:shadow transition"
+      className="cursor-grab select-none rounded-xl border border-slate-200 bg-white px-4 py-3 w-40 shadow-sm hover:shadow transition transform hover:-translate-y-0.5 animate-pop"
       draggable
       onDragStart={onDragStart}
       title={`${item.name} (${timeLeft}s)`}
