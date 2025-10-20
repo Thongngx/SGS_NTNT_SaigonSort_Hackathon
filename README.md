@@ -58,7 +58,3 @@ Players learn the importance of **sorting waste correctly** to reduce pollution,
 | **Storage**     | localStorage (for saving scores) |
 
 ---
-
-## 🚀 Running the Game Locally
-
-1. **D**
