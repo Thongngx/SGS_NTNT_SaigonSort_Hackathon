@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 // Tailwind styles are provided via index.css
 
 import Menu from './screens/Menu.jsx'
@@ -36,6 +36,14 @@ function App() {
     setTotals({ score: 0, trust: 0 })
     setScreen('game')
   }
+
+  // Optional: support external event to open scores (backward-compatible)
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const handler = () => setScreen('scores')
+    window.addEventListener('open-scores', handler)
+    return () => window.removeEventListener('open-scores', handler)
+  }, [])
 
   const handleEndOfDay = (summary) => {
     // summary: { scoreDelta, trustDelta, pollution, gameOver }
@@ -115,9 +123,14 @@ function App() {
           onNextDay={proceedNextDay}
         />
       )}
+
+      {screen === 'scores' && (
+        <div className="grid min-h-[calc(100vh-4rem)] place-items-center">
+          <HighScores scores={highscores} onBack={() => setScreen('menu')} />
+        </div>
+      )}
     </div>
   )
 }
 
 export default App
-      {screen === 'scores' && <HighScores scores={highscores} onBack={() => setScreen('menu')} />}

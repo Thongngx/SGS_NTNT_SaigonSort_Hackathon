@@ -4,7 +4,7 @@ html, body, #root {
   height: 100%;
 }
 body {
-  @apply bg-white text-slate-900 antialiased;
+  @apply text-slate-900 antialiased;
 }
 
 /* lightweight animations */

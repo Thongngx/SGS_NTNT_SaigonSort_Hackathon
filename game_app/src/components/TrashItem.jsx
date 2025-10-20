@@ -1,7 +1,12 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 export default function TrashItem({ item, expiresAt }) {
-  const timeLeft = useMemo(() => Math.max(0, Math.ceil((expiresAt - Date.now()) / 1000)), [expiresAt])
+  const [now, setNow] = useState(Date.now())
+  useEffect(() => {
+    const iv = setInterval(() => setNow(Date.now()), 1000)
+    return () => clearInterval(iv)
+  }, [])
+  const timeLeft = useMemo(() => Math.max(0, Math.ceil((expiresAt - now) / 1000)), [expiresAt, now])
   const onDragStart = (e) => {
     e.dataTransfer.setData('application/x-item', JSON.stringify({ id: item.id, type: item.type }))
     e.dataTransfer.effectAllowed = 'move'

@@ -1,29 +1,34 @@
 export default function HighScores({ scores = [], onBack }) {
-  const items = [...scores]
-    .sort((a, b) => b.score - a.score || (b.when || 0) - (a.when || 0))
-    .slice(0, 10)
+  const sorted = [...(scores || [])].sort((a, b) => b.score - a.score || (b.when || 0) - (a.when || 0))
+  const top5 = Array.from({ length: 5 }).map((_, i) => sorted[i] || null)
   return (
-    <div className="max-w-xl mx-auto">
-      <h2 className="text-2xl font-semibold mb-2">High Scores</h2>
-      {items.length === 0 ? (
-        <div className="text-slate-600">No scores yet. Play a run to add one!</div>
-      ) : (
-        <ol className="divide-y divide-slate-200 border border-slate-200 rounded-xl overflow-hidden bg-white shadow-sm">
-          {items.map((s, idx) => (
-            <li key={`${s.when}-${idx}`} className="flex items-center justify-between px-4 py-2">
-              <div className="flex items-center gap-3">
-                <span className="w-6 text-right tabular-nums text-slate-500">{idx + 1}.</span>
-                <span className="font-semibold tabular-nums">{s.score}</span>
-              </div>
-              <div className="text-sm text-slate-500">Day {s.day} · {new Date(s.when).toLocaleString()}</div>
-            </li>
-          ))}
-        </ol>
-      )}
+    <div className="max-w-2xl mx-auto">
+      <h2 className="text-2xl font-semibold mb-3">High Scores</h2>
+      <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+        <table className="w-full">
+          <thead className="bg-slate-50 text-slate-700">
+            <tr>
+              <th className="text-left px-4 py-2 font-medium">Rank</th>
+              <th className="text-left px-4 py-2 font-medium">Score</th>
+              <th className="text-left px-4 py-2 font-medium">Day</th>
+              <th className="text-left px-4 py-2 font-medium">When</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-slate-200">
+            {top5.map((s, idx) => (
+              <tr key={idx} className="hover:bg-slate-50">
+                <td className="px-4 py-2 tabular-nums">{idx + 1}</td>
+                <td className="px-4 py-2 tabular-nums">{s ? s.score : 'N/A'}</td>
+                <td className="px-4 py-2 tabular-nums">{s ? s.day : 'N/A'}</td>
+                <td className="px-4 py-2">{s ? new Date(s.when).toLocaleString() : 'N/A'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <div className="mt-3 flex justify-center">
-        <button className="px-4 py-2 rounded-md border border-slate-300 bg-white hover:bg-slate-50" onClick={onBack}>← Back</button>
+        <button className="px-4 py-2 rounded-md border border-slate-300 bg-white hover:bg-slate-50" onClick={onBack}>← Return to Menu</button>
       </div>
     </div>
   )
 }
-
