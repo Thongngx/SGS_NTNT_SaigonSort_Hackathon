@@ -6,10 +6,10 @@ export const BIN_TYPES = [
 ]
 
 export const BASE_CONFIG = {
-  dayDurationSec: 60,
-  itemLifetimeSec: 12,
-  spawnIntervalMinSec: 1.2,
-  spawnIntervalMaxSec: 2.6,
+  dayDurationSec: 30,
+  itemLifetimeSec: 11,
+  spawnIntervalMinSec: 1.0,
+  spawnIntervalMaxSec: 2.3,
   pointsCorrect: 10,
   pointsWrong: -5,
   trustPerCorrect: 1,
