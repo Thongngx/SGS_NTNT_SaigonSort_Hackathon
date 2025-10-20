@@ -18,9 +18,9 @@ export default function HighScores({ scores = [], onBack }) {
             {top5.map((s, idx) => (
               <tr key={idx} className="hover:bg-slate-50">
                 <td className="px-4 py-2 tabular-nums">{idx + 1}</td>
-                <td className="px-4 py-2 tabular-nums">{s ? s.score : 'N/A'}</td>
-                <td className="px-4 py-2 tabular-nums">{s ? s.day : 'N/A'}</td>
-                <td className="px-4 py-2">{s ? new Date(s.when).toLocaleString() : 'N/A'}</td>
+                <td className="px-4 py-2 tabular-nums">{s ? s.score : '-'}</td>
+                <td className="px-4 py-2 tabular-nums">{s ? s.day : '-'}</td>
+                <td className="px-4 py-2">{s ? new Date(s.when).toLocaleString() : '-'}</td>
               </tr>
             ))}
           </tbody>
