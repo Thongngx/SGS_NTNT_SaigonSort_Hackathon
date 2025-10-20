@@ -1,20 +1,21 @@
 import PollutionBar from './PollutionBar.jsx'
 
 export default function TopBar({ day, score, trust, pollution, drainAt, timeLeft }) {
+  const stat = (label, value) => (
+    <div className="px-3 py-1.5 rounded-md border border-slate-200 bg-white shadow-sm text-sm">
+      <span className="text-slate-500 mr-1">{label}</span>
+      <span className="font-semibold text-slate-900">{value}</span>
+    </div>
+  )
   return (
-    <div className="topbar">
-      <div className="topbar-left">
-        <div className="stat"><span className="stat-label">Day</span> <span className="stat-value">{day}</span></div>
-        <div className="stat"><span className="stat-label">Score</span> <span className="stat-value">{score}</span></div>
-        <div className="stat"><span className="stat-label">Trust</span> <span className="stat-value">{trust}</span></div>
-      </div>
-      <div className="topbar-center">
+    <div className="grid grid-cols-3 items-center gap-3 mb-3">
+      <div className="flex gap-2 items-center">{stat('Day', day)}{stat('Score', score)}{stat('Trust', trust)}</div>
+      <div>
         <PollutionBar value={pollution} drainAt={drainAt} />
       </div>
-      <div className="topbar-right">
-        <div className="timer">⏱ {Math.max(0, Math.ceil(timeLeft))}s</div>
+      <div className="flex justify-end">
+        <div className="px-3 py-1.5 rounded-md border border-slate-200 bg-white shadow-sm text-sm">⏱ {Math.max(0, Math.ceil(timeLeft))}s</div>
       </div>
     </div>
   )
 }
-

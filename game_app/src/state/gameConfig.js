@@ -1,15 +1,15 @@
 export const BIN_TYPES = [
-  { id: 'recycle', label: 'Recycle (Nhựa/Giấy)' },
-  { id: 'compost', label: 'Compost (Rác hữu cơ)' },
-  { id: 'landfill', label: 'Landfill (Rác khác)' },
-  { id: 'ewaste', label: 'E-waste (Pin/Điện tử)' },
+  { id: 'recycle', label: 'Recycle' },
+  { id: 'compost', label: 'Compost' },
+  { id: 'landfill', label: 'Landfill' },
+  { id: 'ewaste', label: 'E-waste' },
 ]
 
 export const BASE_CONFIG = {
   dayDurationSec: 60,
-  itemLifetimeSec: 10,
-  spawnIntervalMinSec: 0.9,
-  spawnIntervalMaxSec: 2.2,
+  itemLifetimeSec: 12,
+  spawnIntervalMinSec: 1.2,
+  spawnIntervalMaxSec: 2.6,
   pointsCorrect: 10,
   pointsWrong: -5,
   trustPerCorrect: 1,
@@ -69,4 +69,3 @@ export const ALL_UPGRADES = [
     desc: '+1 trust per correct.',
   },
 ]
-

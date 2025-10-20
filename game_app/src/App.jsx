@@ -1,17 +1,17 @@
 import { useMemo, useState } from 'react'
-import './App.css'
-import './styles/game.css'
+// Tailwind styles are provided via index.css
 
 import Menu from './screens/Menu.jsx'
 import HowTo from './screens/HowTo.jsx'
 import WhySort from './screens/WhySort.jsx'
+import Guide from './screens/Guide.jsx'
 import Game from './screens/Game.jsx'
 import EndOfDay from './screens/EndOfDay.jsx'
 import { createRNG, dailySeed } from './state/rng.js'
 import useLocalStorage from './state/useLocalStorage.js'
 
 function App() {
-  const [screen, setScreen] = useState('menu') // menu | how | why | game | end
+  const [screen, setScreen] = useState('menu') // menu | how | guide | why | game | end
   const [seedMode, setSeedMode] = useState('daily') // daily | random | custom
   const [customSeed, setCustomSeed] = useState('')
   const resolvedSeed = useMemo(() => {
@@ -56,32 +56,39 @@ function App() {
   }
 
   return (
-    <div className="app-shell">
+    <div className="max-w-5xl mx-auto min-h-screen p-4 md:p-6">
       {screen === 'menu' && (
-        <Menu
-          seedMode={seedMode}
-          setSeedMode={setSeedMode}
-          customSeed={customSeed}
-          setCustomSeed={setCustomSeed}
-          seedPreview={resolvedSeed}
-          bestScore={bestScore}
-          onPlay={startGame}
-          onHow={() => setScreen('how')}
-          onWhy={() => setScreen('why')}
-        />
+        <div className="grid min-h-[calc(100vh-4rem)] place-items-center">
+          <Menu
+            seedMode={seedMode}
+            setSeedMode={setSeedMode}
+            customSeed={customSeed}
+            setCustomSeed={setCustomSeed}
+            seedPreview={resolvedSeed}
+            bestScore={bestScore}
+            onPlay={startGame}
+            onHow={() => setScreen('how')}
+            onGuide={() => setScreen('guide')}
+            onWhy={() => setScreen('why')}
+          />
+        </div>
       )}
 
       {screen === 'how' && <HowTo onBack={() => setScreen('menu')} />}
 
+      {screen === 'guide' && <Guide onBack={() => setScreen('menu')} />}
+
       {screen === 'why' && <WhySort onBack={() => setScreen('menu')} />}
 
       {screen === 'game' && (
-        <Game
-          day={day}
-          rng={rng}
-          upgrades={upgrades}
-          onEndOfDay={handleEndOfDay}
-        />
+        <div className="grid min-h-[calc(100vh-4rem)] place-items-center">
+          <Game
+            day={day}
+            rng={rng}
+            upgrades={upgrades}
+            onEndOfDay={handleEndOfDay}
+          />
+        </div>
       )}
 
       {screen === 'end' && (

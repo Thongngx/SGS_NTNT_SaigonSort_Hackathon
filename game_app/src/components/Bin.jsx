@@ -15,10 +15,18 @@ export default function Bin({ type, label, onDrop }) {
     }
   }
 
+  const color =
+    type === 'recycle' ? 'border-cyan-300' :
+    type === 'compost' ? 'border-emerald-300' :
+    type === 'landfill' ? 'border-slate-300' :
+    'border-rose-300'
   return (
-    <div className={`bin bin-${type}`} onDragOver={handleDragOver} onDrop={handleDrop}>
-      <div className="bin-label">{label}</div>
+    <div
+      className={`rounded-xl border-2 ${color} bg-white text-center min-h-24 p-4 flex items-center justify-center shadow-sm`}
+      onDragOver={handleDragOver}
+      onDrop={handleDrop}
+    >
+      <div className="font-semibold text-slate-800">{label}</div>
     </div>
   )
 }
-

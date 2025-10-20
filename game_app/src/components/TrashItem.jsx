@@ -8,10 +8,15 @@ export default function TrashItem({ item, expiresAt }) {
   }
 
   return (
-    <div className={`trash`} draggable onDragStart={onDragStart} title={`${item.name} (${timeLeft}s)`}>
-      <div className="trash-emoji">{item.emoji}</div>
-      <div className="trash-name">{item.name}</div>
+    <div
+      className="cursor-grab select-none rounded-xl border border-slate-200 bg-white px-4 py-3 w-40 shadow-sm hover:shadow transition"
+      draggable
+      onDragStart={onDragStart}
+      title={`${item.name} (${timeLeft}s)`}
+    >
+      <div className="text-xl">{item.emoji}</div>
+      <div className="text-sm text-slate-700">{item.name}</div>
+      <div className="text-[10px] text-slate-500">⏱ {timeLeft}s</div>
     </div>
   )
 }
-

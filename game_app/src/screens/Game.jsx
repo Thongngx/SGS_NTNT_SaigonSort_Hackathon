@@ -2,7 +2,6 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import TopBar from '../components/TopBar.jsx'
 import TrashItem from '../components/TrashItem.jsx'
 import Bin from '../components/Bin.jsx'
-import Overlay from '../components/Overlay.jsx'
 import { BIN_TYPES, applyUpgradesToConfig } from '../state/gameConfig.js'
 import { makeItem } from '../data/items.js'
 
@@ -14,7 +13,7 @@ export default function Game({ day, rng, upgrades, onEndOfDay }) {
   const [pollution, setPollution] = useState(0)
   const [items, setItems] = useState([])
   const [drainShown, setDrainShown] = useState(false)
-  const [overlay, setOverlay] = useState(null)
+  const [banner, setBanner] = useState(null)
 
   const idRef = useRef(1)
   const timers = useRef({})
@@ -81,7 +80,8 @@ export default function Game({ day, rng, upgrades, onEndOfDay }) {
         const np = Math.min(100, p + cfg.pollutionPerWrong)
         if (!drainShown && np >= cfg.pollutionDrainEventAt && np < cfg.pollutionGameOverAt) {
           setDrainShown(true)
-          setOverlay({ title: 'Drain Clogged!', subtitle: 'Pollution is rising.' })
+          setBanner('Drain Clogged! Pollution is rising.')
+          setTimeout(() => setBanner(null), 3000)
         }
         if (np >= cfg.pollutionGameOverAt) {
           endDay(true)
@@ -117,29 +117,30 @@ export default function Game({ day, rng, upgrades, onEndOfDay }) {
   }
 
   return (
-    <div className="game">
+    <div className="relative">
+      {banner && (
+        <div className="fixed top-0 left-0 right-0 z-40">
+          <div className="mx-auto max-w-5xl">
+            <div className="m-2 rounded-md border border-amber-300 bg-amber-100 text-amber-900 text-sm text-center px-3 py-2 shadow pointer-events-none">
+              {banner}
+            </div>
+          </div>
+        </div>
+      )}
       <TopBar day={day} score={score} trust={trust} pollution={pollution} drainAt={cfg.pollutionDrainEventAt} timeLeft={timeLeft} />
 
-      <div className="playfield">
-        <div className="spawn-area">
+      <div className="border border-slate-200 rounded-xl p-3 bg-white">
+        <div className="min-h-56 flex flex-wrap gap-3 justify-center items-center p-2">
           {items.map(({ item, expiresAt }) => (
             <TrashItem key={item.id} item={item} expiresAt={expiresAt} />
           ))}
         </div>
-        <div className="bins">
+        <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 mt-3">
           {BIN_TYPES.map((b) => (
             <Bin key={b.id} type={b.id} label={b.label} onDrop={handleDrop} />
           ))}
         </div>
       </div>
-
-      <Overlay
-        visible={!!overlay}
-        title={overlay?.title}
-        subtitle={overlay?.subtitle}
-        onClose={() => setOverlay(null)}
-      />
     </div>
   )
 }
-
