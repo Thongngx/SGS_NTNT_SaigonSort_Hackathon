@@ -27,7 +27,7 @@ Players learn the importance of **sorting waste correctly** to reduce pollution,
      - 🗑️ **Landfill** – tissues, construction debris, non-recyclables
 
 4. **Check result**  
-   - Click **“Check”** or drop the item into a bin.
+   - Drag and drop the item into a bin.
    - Correct sort → +10 points  
    - Incorrect → +5 pollution
 
@@ -51,7 +51,7 @@ Players learn the importance of **sorting waste correctly** to reduce pollution,
 
 | Layer           | Tools Used                |
 | ----------------| --------------------------|
-| **Frontend**    | HTML5, CSS3, Vanilla JS   |
+| **Frontend**    | HTML5, CSS3, Vanilla JS, React   |
 | **Animation**   | Basic CSS transitions (future: GSAP / Framer Motion) |
 | **Graphics**    | Emoji-based icons (lightweight + expressive) |
 | **Audio (opt.)**| Howler.js for sounds      |
