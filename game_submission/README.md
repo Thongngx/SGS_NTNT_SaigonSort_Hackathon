@@ -78,6 +78,11 @@ Notes
   - src/state/: rng, gameConfig (tuning + upgrades), useLocalStorage
   - src/data/: items (catalog), tips (educational snippets)
 
+Key files
+- game_app/src/state/gameConfig.js: tuning, bin labels, upgrade effects, day scaling
+- game_app/src/state/rng.js: daily/custom seeds and deterministic RNG
+- game_app/src/screens/Game.jsx: main loop, timers, banner events, pause/resume
+
 ```cmd
 game_submission/
 ├── README.md    # Overview, instructions to run the game, and project summary  
@@ -105,11 +110,7 @@ game_submission/
     └── results_screen.png  
     ├── resultWin_screen.png  
     └── resultFalse_screen.png  
-
-Key files
-- game_app/src/state/gameConfig.js: tuning, bin labels, upgrade effects, day scaling
-- game_app/src/state/rng.js: daily/custom seeds and deterministic RNG
-- game_app/src/screens/Game.jsx: main loop, timers, banner events, pause/resume
+```
 
 ### Replayability & Tuning
 - Seeds: choose Daily, Random, or Custom on the Menu
