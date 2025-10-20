@@ -1,4 +1,9 @@
-# Saigon Sort - Vibe Coding: Play to Impact (Challenge 3)
+<p align="center">
+  <img src="/game_submission/game_app/public/logo.png" width="200" />
+</p>
+
+<h1 align="center">Saigon Sort - Vibe Coding: Play to Impact (Challenge 3)</h1>
+
 Saigon Sort is a 2D browser game about plastic waste and urban flooding in Ho Chi Minh City. Sort items into the correct bins to earn points and community trust, keep pollution down, and survive as many days as you can. The game emphasizes simple, replayable mechanics that connect directly to a real social issue.
 
 ### Features
@@ -87,6 +92,12 @@ Adjust values in `game_app/src/state/gameConfig.js`:
 - `spawnIntervalMinSec`, `spawnIntervalMaxSec`
 - `itemLifetimeSec`, points and pollution values
 - Upgrade multipliers and day-based scaling
+
+### Authhor
+- Nguyen An Nhien
+- Nguyen Ngoc Thien Ngan
+- Hoang Minh Thang
+- Nguyen Nhat Thong
 
 ### Acknowledgements
 - Built for RMIT GenAI & Cybersecurity Hackathon 2025 — Challenge 3: Vibe Coding
