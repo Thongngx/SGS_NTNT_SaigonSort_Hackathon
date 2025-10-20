@@ -122,7 +122,7 @@ Adjust values in `game_app/src/state/gameConfig.js`:
 - `itemLifetimeSec`, points and pollution values
 - Upgrade multipliers and day-based scaling
 
-### Authhor
+### Authors
 - Nguyen An Nhien
 - Nguyen Ngoc Thien Ngan
 - Hoang Minh Thang
