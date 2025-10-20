@@ -1,0 +1,14 @@
+1. I have a general game concept and outline in @concept_output.txt , I have initialized a react project 
+in game_app. can you generate me clean, modularized code and create a fully functional game. feel free 
+to add or change features to make the game more engaging and replayable.
+
+2. Generate JavaScript logic files that handle state management for a recycling education game.  
+The files should:
+- Define configurable constants (bins, time limits, difficulty levels).
+- Provide randomization utilities for generating new trash items.
+- Maintain a clean, modular structure that can be imported across components and screens.
+
+Use vanilla JS or React hooks for state handling.  
+Ensure the code is efficient, bug-free, and easy to debug or refine later.
+
+

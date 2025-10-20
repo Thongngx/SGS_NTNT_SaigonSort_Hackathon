@@ -1,0 +1,29 @@
+1. You are helping to build a 2D educational web game about waste sorting.  
+Generate modular React components for UI elements such as bins, trash items, and overlays.  
+Each component should:
+- Use functional React syntax.
+- Be visually simple but engaging.
+- Handle relevant interactions (e.g., drag and drop, hover, progress bar updates).
+- Be compatible with Tailwind CSS or plain CSS styling.
+
+2. Generate JavaScript data objects for a web-based recycling game.  
+The data should include:
+- Trash item definitions (name, type, emoji/icon, category).
+- Educational tips and fun facts related to recycling or waste management.
+- Simple structures (arrays or objects) that can be easily imported into components.
+
+Focus on clarity, variety, and educational tone.  
+Use English text, but keep examples relevant to Vietnam’s environmental context.
+
+3. Generate React screens that define the user journey of a 2D educational web game about recycling.  
+The screens should include:
+- Menu screen (title, start button, navigation to guide or play).
+- Game screen (main gameplay interface).
+- End-of-day or summary screen (results, feedback, replay/next stage option).
+
+Each screen should:
+- Have clear and consistent navigation.
+- Use props/state to manage transitions and game progress.
+- Keep layout simple and responsive.
+
+Ensure the flow creates an engaging and educational experience.

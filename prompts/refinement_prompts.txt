@@ -1,0 +1,21 @@
+1. There are a few changes I want to be made
+
+- I have added tailwindcss package, so convert all css and/or files into tailwind wherever necessary
+- I prefer everything to be light theme
+- Slightly lower the game speed since it's too fast right now
+- When there is a pop up for pollution increase, make it at the top of the page and do not prompt 
+for continue as it is obstructive.
+
+
+2. Now, can you make a page as a documentation for how to play the game, a "dictionary" for all items and
+where they go, what each stats mean. Additionally, I prefer to remove the Vietnamese text as well
+
+3. Center the menu and gameplay elements as well to the center of the screen, right now it's top aligned.
+Still keep the pop up for pollution at the top though.
+
+4. 
+- The button for trash type is too big now, make it smaller height-wise for me.
+- Make game speed increment on each day if it hasn't already. It should still be higher than the amount
+that the user can slow down through upgrades though.
+- Add high score menu which persists even if user closes page.
+- Add wider variety of trash.
