@@ -1,0 +1,87 @@
+/* Global shell */
+.app-shell {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 16px 32px;
+}
+
+/* Buttons */
+.btn {
+  border-radius: 8px;
+  border: 1px solid #444;
+  padding: 10px 16px;
+  background: #1f1f1f;
+  color: #fff;
+  cursor: pointer;
+}
+.btn.primary { background: #2f6; color: #111; border-color: #2f6; }
+.btn:hover { filter: brightness(1.05); }
+
+/* Menu */
+.menu { text-align: center; }
+.menu h1 { margin: 0 0 8px; font-size: 42px; }
+.menu .subtitle { color: #aaa; margin-bottom: 18px; }
+.menu .settings { display: inline-block; text-align: left; }
+.menu .settings-row { margin: 8px 0; }
+.seg { display: inline-flex; gap: 6px; }
+.seg-btn { border-radius: 6px; padding: 6px 10px; }
+.seg-btn.active { background: #335; border-color: #778; }
+.input { padding: 8px 10px; border-radius: 6px; border: 1px solid #555; width: 260px; }
+.menu-actions { margin: 16px 0; display: flex; gap: 8px; justify-content: center; }
+.footer { margin-top: 12px; color: #aaa; }
+
+/* Content */
+.content { max-width: 900px; margin: 0 auto; }
+.content h2 { margin-bottom: 8px; }
+.list { line-height: 1.8; }
+.summary-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 12px; margin-bottom: 8px; }
+.summary-card { border: 1px solid #444; border-radius: 10px; padding: 12px; background: #171717; }
+.summary-title { font-weight: 600; margin-bottom: 8px; }
+.tip { margin: 12px 0 16px; color: #9cf; }
+.upgrade-row { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 10px; }
+.upgrade .upgrade-name { font-weight: 600; margin-bottom: 4px; }
+.upgrade .upgrade-desc { color: #aab; margin-bottom: 6px; }
+.upgrade .upgrade-level { color: #9f9; }
+.actions { display: flex; gap: 8px; justify-content: center; margin-top: 12px; }
+
+/* Top bar */
+.topbar { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 10px; align-items: center; margin-bottom: 10px; }
+.topbar-left, .topbar-right { display: flex; gap: 10px; align-items: center; justify-content: center; }
+.topbar-left { justify-content: flex-start; }
+.topbar-right { justify-content: flex-end; }
+.stat { background: #171717; border: 1px solid #444; border-radius: 8px; padding: 6px 10px; }
+.stat-label { color: #aaa; margin-right: 6px; }
+.timer { background: #171717; border: 1px solid #444; border-radius: 8px; padding: 6px 10px; }
+
+/* Pollution */
+.pollution { position: relative; }
+.pollution-label { font-size: 12px; color: #aaa; margin-bottom: 4px; }
+.pollution-bar { width: 100%; height: 18px; background: #0d0d0d; border: 1px solid #333; border-radius: 999px; overflow: hidden; }
+.pollution-bar.warn { box-shadow: 0 0 0 2px #aa0 inset; }
+.pollution-bar.danger { box-shadow: 0 0 0 2px #d44 inset; }
+.pollution-fill { height: 100%; background: linear-gradient(90deg, #3a3, #dd3); }
+.pollution-marks { position: relative; height: 0; }
+.pollution-marks span { position: absolute; top: -2px; transform: translateX(-50%); font-size: 10px; color: #888; }
+
+/* Game */
+.game {}
+.playfield { border: 1px solid #333; border-radius: 10px; padding: 12px; background: #101010; }
+.spawn-area { min-height: 220px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: center; padding: 8px; }
+.bins { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 12px; }
+.bin { border: 1px dashed #555; border-radius: 10px; padding: 14px; text-align: center; min-height: 72px; background: #0c0c0c; }
+.bin-label { font-weight: 600; color: #ccd; }
+.bin-recycle { border-color: #4bb; }
+.bin-compost { border-color: #6c6; }
+.bin-landfill { border-color: #bbb; }
+.bin-ewaste { border-color: #d77; }
+
+.trash { border: 1px solid #444; border-radius: 10px; padding: 10px; width: 140px; background: #191919; cursor: grab; user-select: none; }
+.trash-emoji { font-size: 22px; }
+.trash-name { font-size: 14px; color: #ccd; }
+
+/* Overlay */
+.overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; }
+.overlay-card { background: #181818; border: 1px solid #444; border-radius: 12px; padding: 18px; max-width: 420px; text-align: center; }
+.overlay-title { font-size: 22px; margin-bottom: 6px; }
+.overlay-sub { color: #aac; margin-bottom: 8px; }
+

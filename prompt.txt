@@ -1,0 +1,224 @@
+Excellent choice — **“Saigon Sort”** is a perfect blend of social relevance, visual engagement, and quick gameplay loops. Let’s turn it into a **well-structured design document + production plan** so you can go from idea → prototype → showcase-ready game.
+
+---
+
+## 🎮 **Game Design Blueprint — “Saigon Sort”**
+
+### 🌏 **Theme & Context**
+
+**Issue:** Urban waste mismanagement and plastic pollution in Ho Chi Minh City.
+**Goal:** Educate players on proper waste sorting and its direct impact on pollution and flooding.
+
+**Core Message:**
+
+> “Sorting your trash isn’t just good manners — it keeps your city from drowning.”
+
+---
+
+## 🧭 **1. Game Flow Overview**
+
+### **Main Flow:**
+
+```
+START
+ ↓
+[Title Screen]
+ ↓
+[How to Play] → Optional Info Pages → [Play Game]
+ ↓
+[Gameplay Loop (Day System)]
+ ↓
+- Trash appears randomly
+- Player drags item to correct bin
+- Score and pollution bar update
+ ↓
+[Pollution Event Check]
+   ├── Drain Clogged (50%)
+   └── Street Flooded (100%) → Game Over
+ ↓
+[Day End Screen]
+ ↓
+- Summary (Score, Trust, Pollution)
+- Tips & Upgrades
+ ↓
+Next Day / Replay / Quit
+```
+
+---
+
+## 🧩 **2. Game Mechanics**
+
+### 🎯 **Core Mechanics**
+
+| Mechanic                  | Description                                                                                                  |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| **Trash Spawning**        | Random trash (plastic cup, banana peel, battery, paper bag, etc.) appears near the stall every few seconds.  |
+| **Sorting (Drag & Drop)** | Player drags trash into 1 of 4 bins: Recycle ♻️, Compost 🌿, Landfill 🚮, E-waste ⚡.                         |
+| **Timer Pressure**        | Trash must be sorted before the truck comes (e.g., 15 seconds). If missed, it counts as incorrectly sorted.  |
+| **Scoring**               | +10 points & +1 Trust for correct; -5 points & +5 Pollution for incorrect.                                   |
+| **Pollution Bar**         | Increases with mistakes. At 50%, event “Drain Clogged.” At 100%, “Street Flooded” = Game Over.               |
+| **Upgrades**              | Earned between levels — Better Bins (higher score), Signs (slower timer), Community Help (reduce pollution). |
+
+---
+
+## 🧱 **3. Structure of Game Screens**
+
+### 🏠 **Menu Screen**
+
+* Title: *“Saigon Sort”*
+* Buttons:
+
+  * ▶️ Play Game
+  * ℹ️ How to Play
+  * 💧 Why Sort? (educational infographics)
+* Background: stylized Saigon street (alley or food cart area).
+
+### 🍜 **Gameplay Screen**
+
+* **Top bar:**
+
+  * Score, Community Trust, Pollution Bar, Day Timer.
+* **Middle:**
+
+  * Food stall background, trash items appearing.
+* **Bottom:**
+
+  * Four labeled bins (with Vietnamese + English labels):
+
+    * Nhựa/Giấy (Recycle)
+    * Rác hữu cơ (Compost)
+    * Rác khác (Landfill)
+    * Pin/Điện tử (E-waste)
+* **Events:**
+
+  * “Drain Clogged!” overlay animation
+  * “Street Flooded!” game-over modal
+
+### 📊 **End of Day / Game Over Screen**
+
+* Displays:
+
+  * Total score
+  * Community Trust level
+  * Pollution summary
+  * Real-world tip:
+
+    > “Did you know? Plastic bags can block city drains after just one storm.”
+* Buttons: Retry / Next Day / Menu
+
+---
+
+## ⚡ **4. Educational Integration**
+
+Every few trash items, display a quick “Did You Know?” popup:
+
+* “Vietnam produces over 3.6 million tonnes of plastic waste per year.”
+* “Sorting waste helps reduce urban flooding during rainy season.”
+
+*(These popups can appear between rounds or after pollution events.)*
+
+---
+
+## 🧠 **5. AI Vibe-Coding Prompts (to generate assets and logic)**
+
+| Purpose           | Example Prompt                                                                                                                                                             |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Concept Art**   | “Generate a cartoon-style background of a Ho Chi Minh City street with a Bánh mì cart and trash bins in 2D flat art style.”                                                |
+| **Trash Sprites** | “Create 2D icons for: plastic cup, banana peel, battery, paper bag, plastic bottle, and Styrofoam box in a fun cartoon style.”                                             |
+| **Code Logic**    | “Write HTML, CSS, and JavaScript for a drag-and-drop sorting game with four bins and trash items. Each item has a data-type and must match a bin’s ID to score correctly.” |
+| **Event Effects** | “Add a pollution bar that increases by 5 for incorrect sorting. At 50% show ‘Drain Clogged!’ and at 100% trigger ‘Street Flooded!’ game over screen.”                      |
+
+---
+
+## 🧰 **6. Tech Stack (Light & Practical)**
+
+| Layer                     | Tool / Framework                          | Purpose                                                    |
+| ------------------------- | ----------------------------------------- | ---------------------------------------------------------- |
+| **Frontend**              | HTML5, CSS3, Vanilla JavaScript           | Core structure, styling, and interactivity                 |
+| **Animation**             | Framer Motion (React) or GSAP (JS)        | Smooth drag/drop, pollution effects                        |
+| **Graphics**              | SVG / PNG Assets (AI-generated or custom) | Trash items, bins, icons                                   |
+| **Audio (Optional)**      | Howler.js                                 | Background ambient Saigon sounds, correct/wrong sort sound |
+| **Data Persistence**      | localStorage                              | Save upgrades and scores between sessions                  |
+| **Build Tool (optional)** | Vite or React + Vite                      | For modern dev workflow & modular scaling later            |
+
+---
+
+## 🧮 **7. Core JavaScript Logic (Outline)**
+
+```javascript
+// Example structure (simplified)
+const bins = document.querySelectorAll('.bin');
+const trashItems = document.querySelectorAll('.trash');
+let score = 0, trust = 0, pollution = 0;
+
+trashItems.forEach(item => {
+  item.addEventListener('dragstart', dragStart);
+});
+
+bins.forEach(bin => {
+  bin.addEventListener('dragover', dragOver);
+  bin.addEventListener('drop', dropItem);
+});
+
+function dropItem(e) {
+  e.preventDefault();
+  const itemType = e.dataTransfer.getData('type');
+  const binType = e.target.id;
+  
+  if (itemType === binType) {
+    score += 10;
+    trust += 1;
+  } else {
+    score -= 5;
+    pollution += 5;
+  }
+  
+  updateUI();
+  checkPollutionEvents();
+}
+
+function checkPollutionEvents() {
+  if (pollution >= 50 && pollution < 100) showEvent('Drain Clogged!');
+  if (pollution >= 100) endGame('Street Flooded!');
+}
+```
+
+---
+
+## 🧑‍🎨 **8. Visual & Audio Direction**
+
+* **Art style:** Flat, vibrant, cartoonish (like *Dumb Ways to Die*).
+* **Color palette:** Earthy greens, bright blues, Saigon yellow tones.
+* **Sound cues:**
+
+  * Correct sort → pleasant *ding!*
+  * Incorrect sort → splash / buzz sound
+  * Flood event → rushing water / thunder sound
+
+---
+
+## 🏗️ **9. Development Milestones**
+
+| Phase                               | Duration | Deliverables                                     |
+| ----------------------------------- | -------- | ------------------------------------------------ |
+| **1. Prototype (Core Drag & Drop)** | 1 week   | Working waste sorting with score + pollution bar |
+| **2. Event System + UI Polish**     | 1 week   | Pollution events, sound, better animations       |
+| **3. Educational Layer + Upgrades** | 1 week   | “Why Sort?” info screen, daily summary, upgrades |
+| **4. Visual Polish + Launch Build** | 1 week   | Final art, responsive layout, playtesting        |
+
+Total ≈ **4 weeks** for a polished playable version.
+*(Shorter if using a simple HTML/CSS prototype for demo.)*
+
+---
+
+## 💬 **10. Expansion Ideas (Future Updates)**
+
+* Multiplayer “Street Clean Challenge” mode (compare scores with friends)
+* School leaderboard or district ranking
+* Integration with real environmental data APIs (optional)
+* Mobile-friendly version (PWA) with offline play
+
+---
+
+Would you like me to create the **next step — the flowchart (visual of user journey and game logic flow)** for *Saigon Sort*?
+I can design it in structured ASCII or UML-style format (or a diagram-ready version for Figma / draw.io).
