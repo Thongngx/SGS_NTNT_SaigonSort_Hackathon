@@ -22,6 +22,9 @@ export default function Game({ day, rng, upgrades, onEndOfDay, onExitToMenu }) {
   const endAtRef = useRef(Date.now() + cfg.dayDurationSec * 1000)
   const itemsCountRef = useRef(0)
   const pauseStartRef = useRef(null)
+  const scoreRef = useRef(0)
+  const trustRef = useRef(0)
+  const pollutionRef = useRef(0)
 
   // Countdown timer
   useEffect(() => {
@@ -90,7 +93,8 @@ export default function Game({ day, rng, upgrades, onEndOfDay, onExitToMenu }) {
           setTimeout(() => setBanner(null), 3000)
         }
         if (np >= cfg.pollutionGameOverAt) {
-          endDay(true)
+          const nextScore = (scoreRef.current || 0) + cfg.pointsWrong
+          endDay(true, np, nextScore, trustRef.current || 0)
         }
         return np
       })
@@ -106,7 +110,7 @@ export default function Game({ day, rng, upgrades, onEndOfDay, onExitToMenu }) {
     adjustScore({ correct, expired: false })
   }
 
-  function endDay(gameOver) {
+  function endDay(gameOver, overridePollution = null, overrideScore = null, overrideTrust = null) {
     if (endedRef.current) return
     endedRef.current = true
     // clear timers
@@ -114,9 +118,9 @@ export default function Game({ day, rng, upgrades, onEndOfDay, onExitToMenu }) {
     timers.current = {}
     // compute deltas
     const summary = {
-      scoreDelta: score,
-      trustDelta: trust,
-      pollution,
+      scoreDelta: overrideScore != null ? overrideScore : scoreRef.current,
+      trustDelta: overrideTrust != null ? overrideTrust : trustRef.current,
+      pollution: overridePollution != null ? overridePollution : pollutionRef.current,
       gameOver: !!gameOver,
     }
     onEndOfDay(summary)
@@ -126,6 +130,11 @@ export default function Game({ day, rng, upgrades, onEndOfDay, onExitToMenu }) {
   useEffect(() => {
     itemsCountRef.current = items.length
   }, [items])
+
+  // Keep refs in sync for end-of-day summary
+  useEffect(() => { scoreRef.current = score }, [score])
+  useEffect(() => { trustRef.current = trust }, [trust])
+  useEffect(() => { pollutionRef.current = pollution }, [pollution])
 
   // Pause / Resume
   const togglePause = () => {
@@ -177,7 +186,7 @@ export default function Game({ day, rng, upgrades, onEndOfDay, onExitToMenu }) {
         onTogglePause={togglePause}
       />
 
-      <div className="border border-slate-200 rounded-xl p-3 bg-white w-[360px] h-[520px] sm:w-[640px] sm:h-[520px] md:w-[800px] md:h-[540px] lg:w-[900px] lg:h-[560px] shadow-sm">
+      <div className="border border-slate-300 rounded-xl p-3 bg-white w-[360px] h-[520px] sm:w-[640px] sm:h-[520px] md:w-[800px] md:h-[540px] lg:w-[900px] lg:h-[560px] shadow-sm">
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 justify-items-center items-start p-2 overflow-hidden h-[64%]">
           {items.map(({ item, expiresAt }) => (
             <TrashItem key={item.id} item={item} expiresAt={expiresAt} />
@@ -192,7 +201,7 @@ export default function Game({ day, rng, upgrades, onEndOfDay, onExitToMenu }) {
 
       {paused && (
         <div className="fixed inset-0 z-50 bg-black/20 flex items-center justify-center">
-          <div className="w-[90%] max-w-md rounded-xl border border-slate-200 bg-white p-4 shadow-lg">
+          <div className="w-[90%] max-w-md rounded-xl border border-slate-300 bg-white p-4 shadow-lg">
             <div className="text-xl font-semibold mb-2">Paused</div>
             <div className="text-slate-600 mb-4">Take a breather. Streets can wait a moment.</div>
             <div className="flex gap-2 justify-end">

@@ -7,7 +7,7 @@ export default function Guide({ onBack }) {
     items: ITEMS.filter((it) => it.type === bin.id),
   }))
   const statRow = (name, desc) => (
-    <div className="border border-slate-200 rounded-lg p-3 bg-white">
+    <div className="border border-slate-300 rounded-lg p-3 bg-white">
       <div className="font-semibold text-slate-900">{name}</div>
       <div className="text-slate-600 text-sm">{desc}</div>
     </div>
@@ -43,7 +43,7 @@ export default function Guide({ onBack }) {
         <h3 className="text-lg font-semibold mb-2">Item Dictionary</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {grouped.map(({ bin, items }) => (
-            <div key={bin.id} className="border border-slate-200 rounded-xl p-3 bg-white shadow-sm">
+            <div key={bin.id} className="border border-slate-300 rounded-xl p-3 bg-white shadow-sm">
               <div className="font-semibold mb-1">{bin.label}</div>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1">
                 {items.map((it) => (
@@ -69,4 +69,3 @@ export default function Guide({ onBack }) {
     </div>
   )
 }
-

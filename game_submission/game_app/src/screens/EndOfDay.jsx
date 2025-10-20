@@ -25,13 +25,13 @@ export default function EndOfDay({ day, summary, totals, upgrades, rng, onMenu, 
     <div className="max-w-4xl mx-auto">
       <h2 className="text-2xl font-semibold mb-2">{summary?.gameOver ? 'Street Flooded!' : `End of Day ${day}`}</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-2">
-        <div className="border border-slate-200 rounded-xl p-3 bg-white shadow-sm">
+        <div className="border border-slate-300 rounded-xl p-3 bg-white shadow-sm">
           <div className="font-semibold mb-2">This Day</div>
           <div>Score: <strong>+{summary?.scoreDelta || 0}</strong></div>
           <div>Trust: <strong>+{summary?.trustDelta || 0}</strong></div>
           <div>Pollution: <strong>{summary?.pollution || 0}%</strong></div>
         </div>
-        <div className="border border-slate-200 rounded-xl p-3 bg-white shadow-sm">
+        <div className="border border-slate-300 rounded-xl p-3 bg-white shadow-sm">
           <div className="font-semibold mb-2">Totals</div>
           <div>Score: <strong>{totals?.score || 0}</strong></div>
           <div>Trust: <strong>{totals?.trust || 0}</strong></div>
@@ -51,7 +51,7 @@ export default function EndOfDay({ day, summary, totals, upgrades, rng, onMenu, 
           <h3 className="text-lg font-semibold mb-2">Choose an upgrade</h3>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
             {choices.map((u) => (
-              <button key={u.id} className="text-left border border-slate-200 rounded-xl p-3 bg-white shadow-sm hover:bg-slate-50" onClick={() => onNextDay(u.id)}>
+              <button key={u.id} className="text-left border border-slate-300 rounded-xl p-3 bg-white shadow-sm hover:bg-slate-50" onClick={() => onNextDay(u.id)}>
                 <div className="font-semibold">{u.name}</div>
                 <div className="text-slate-600 text-sm">{u.desc}</div>
                 <div className="text-emerald-700 text-sm">Lv. {(upgrades[u.id] || 0) + 1}</div>

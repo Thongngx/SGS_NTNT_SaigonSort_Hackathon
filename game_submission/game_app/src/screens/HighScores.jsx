@@ -4,7 +4,7 @@ export default function HighScores({ scores = [], onBack }) {
   return (
     <div className="max-w-2xl mx-auto">
       <h2 className="text-2xl font-semibold mb-3">High Scores</h2>
-      <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+      <div className="overflow-hidden rounded-xl border border-slate-300 bg-white shadow-sm">
         <table className="w-full">
           <thead className="bg-slate-50 text-slate-700">
             <tr>

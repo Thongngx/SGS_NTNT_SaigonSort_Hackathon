@@ -7,7 +7,7 @@ export default function Menu({ seedMode, setSeedMode, customSeed, setCustomSeed,
       <h1 className="text-4xl font-bold mb-1">Saigon Sort</h1>
       <p className="text-slate-600 mb-4">Sort smart. Keep the streets flowing.</p>
 
-      <div className="inline-block text-left border border-slate-200 rounded-xl p-4 bg-white shadow-sm">
+      <div className="inline-block text-left border border-slate-300 rounded-xl p-4 bg-white shadow-sm">
         <div className="flex items-center gap-3 mb-2">
           <label className="text-sm text-slate-700">Seed:</label>
           <div className="inline-flex gap-2">
